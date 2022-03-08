@@ -5,12 +5,12 @@
 git clone https://github.com/solace-fi/referral-code-generator.git && cd referral-code-generator
 ```
 
-2. Install dependencies (good practice to use [venv](https://cdkworkshop.com/30-python/20-create-project/200-virtualenv.html))
+2. Install dependencies (good practice to use [venv](https://pythonbasics.org/virtualenv/))
 ```
 pip install -r requirements.txt
 ```
 
-3. Enter private key and RPC endpoint into .env file
+3. Create a .env file, and enter private key and RPC endpoint (example provided in .env.example)
 
 4. In app.py, comment in/out the desired constant values for the chain ID and SolaceCoverProductV2.sol address. Default set for MATIC mainnet (lines 17-18).
 
