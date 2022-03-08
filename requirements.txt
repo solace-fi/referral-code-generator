@@ -1,0 +1,5 @@
+web3
+ecdsa
+eth_keys
+eip712_structs
+python-dotenv
