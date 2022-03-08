@@ -21,7 +21,7 @@ python app.py
 
 # Expected Output
 
-![](https://raw.githubusercontent.com/solace-fi/referral-code-generator/blob/main/static/img/terminal_output.png)
+![](https://github.com/solace-fi/referral-code-generator/blob/main/static/img/terminal_output.png)
 
 # Explanation
 
