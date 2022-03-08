@@ -13,11 +13,13 @@ load_dotenv()
 YOUR_PRIVATE_KEY = os.getenv("YOUR_PRIVATE_KEY")
 RPC_URL = os.getenv("RPC_URL")
 
-# Constants
-# SOLACE_COVER_PRODUCT_ADDRESS = "0x501AcEC83d440c00644cA5C48d059e1840852a64" # Polygon mainnet
-SOLACE_COVER_PRODUCT_ADDRESS = "0x501ACed5c34d01Db4da47d18c0411936a6a022dE" # Mumbai
-# CHAIN_ID = 137
-CHAIN_ID = 80001
+# Polygon mainnet constants
+SOLACE_COVER_PRODUCT_ADDRESS = "0x501AcEC83d440c00644cA5C48d059e1840852a64"
+CHAIN_ID = 137
+
+# Polygon testnet (Mumbai) constants
+# SOLACE_COVER_PRODUCT_ADDRESS = "0x501ACed5c34d01Db4da47d18c0411936a6a022dE"
+# CHAIN_ID = 80001
 
 # Create Web3 objects
 w3 = Web3(Web3.HTTPProvider(RPC_URL))
@@ -66,7 +68,7 @@ def activatePolicy(public_key):
         public_key, # Address of intended policyholder
         10, # Cover limit
         1, # Deposit amount
-        "0x", # Referral code
+        "0x", # Empty referral code
         [137] # Array of supported chains
         ).buildTransaction({
             'chainId': CHAIN_ID,
@@ -82,21 +84,6 @@ def activatePolicy(public_key):
     print("WAITING FOR TRANSACTION:", tx_hash.hex())
     receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
     print("SUCCESSFUL ACTIVATEPOLICY TRANSACTION!")
-
-def send_to_self():
-    txn = {
-        'to': generate_public_key(YOUR_PRIVATE_KEY),
-        'value': 0,
-        'gas': 30000,
-        'maxFeePerGas': w3.toWei('300', 'gwei'),
-        'maxPriorityFeePerGas': w3.toWei('200', 'gwei'),
-        'nonce': w3.eth.get_transaction_count(generate_public_key(YOUR_PRIVATE_KEY)),
-        'chainId': CHAIN_ID,
-    }
-
-    signed_txn = w3.eth.account.sign_transaction(txn, private_key=YOUR_PRIVATE_KEY)
-    tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
-    print("SENDING TO SELF:", tx_hash.hex())
 
 def main():
     private_key = generate_private_key()
