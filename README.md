@@ -15,9 +15,10 @@ pip install -r requirements.txt
 4. In app.py, comment in/out the desired constant values for the chain ID and SolaceCoverProductV2.sol address. Default set for MATIC mainnet (lines 17-18).
 
 5. Run script
-```
-python app.py
-```
+
+Polygon for SolaceCoverProductV2: `python app_polygon.py`
+
+Mainnet for SolaceCoverProduct: `python app_eth_mainnet.py`
 
 # Expected Output
 
